@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Godoy Beer 2 • Depósito de Bebidas</title>
+    <meta name="description" content="Godoy Beer 2 - O melhor depósito de bebidas da região. Cervejas, vinhos, destilados e muito mais.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        :root {
+            --red: #C8102E;
+            --blue: #003087;
+            --gold: #D4AF37;
+            --black: #1A1A1A;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f8f8;
+        }
+        
+        header {
+            background: var(--black);
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--gold);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), 
+                        url('https://picsum.photos/1920/1080?random=beer1') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 85px;
+        }
+        
+        .hero-content h1 {
+            font-size: 4.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+        }
+        
+        .btn {
+            padding: 16px 45px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: all 0.4s;
+        }
+        
+        .btn-primary {
+            background: var(--red);
+            color: white;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background: #a00;
+            transform: scale(1.05);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 3px solid var(--gold);
+            color: white;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            transition: 0.4s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(200, 16, 46, 0.2);
+        }
+        
+        .product-img {
+            height: 260px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .price {
+            color: var(--red);
+            font-size: 1.7rem;
+            font-weight: 700;
+        }
+        
+        .add-to-cart {
+            background: var(--black);
+            color: white;
+        }
+        
+        .add-to-cart:hover {
+            background: var(--red);
+        }
+        
+        footer {
+            background: var(--black);
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">
+                <img src="logo.png" alt="Godoy Beer 2" style="height: 60px;"> 
+                <!-- Se preferir usar a imagem que enviou, substitua o src acima -->
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#produtos">Bebidas</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <div onclick="toggleCart()" style="color:white; cursor:pointer; font-size:1.8rem; position:relative;">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cartCount" style="position:absolute; top:-8px; right:-8px; background:var(--red); color:white; font-size:0.8rem; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center;">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+        <div class="hero-content" style="max-width:900px; padding:2rem;">
+            <h1>GODOY BEER 2</h1>
+            <p style="font-size:1.6rem; margin-bottom:2rem;">O melhor depósito de bebidas da região</p>
+            <div>
+                <a href="#produtos" class="btn btn-primary">Ver Catálogo Completo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUTOS -->
+    <section id="produtos" style="padding:100px 0;">
+        <div style="max-width:1400px; margin:0 auto; padding:0 2rem;">
+            <h2 style="text-align:center; font-size:3rem; margin-bottom:3rem; color:var(--black);">Nossas Bebidas</h2>
+            
+            <div class="products-grid" id="productsGrid">
+                <!-- JS preenche aqui -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const products = [
+            { id:1, name:"Heineken Long Neck 330ml", category:"cerveja", price:6.99, img:"https://picsum.photos/id/1015/600/400" },
+            { id:2, name:"Stella Artois 275ml", category:"cerveja", price:7.49, img:"https://picsum.photos/id/870/600/400" },
+            { id:3, name:"Corona Extra 355ml", category:"cerveja", price:8.90, img:"https://picsum.photos/id/201/600/400" },
+            { id:4, name:"Budweiser 600ml", category:"cerveja", price:8.50, img:"https://picsum.photos/id/431/600/400" },
+            { id:5, name:"Vinho Tinto Casillero del Diablo", category:"vinho", price:89.90, img:"https://picsum.photos/id/1016/600/400" },
+            { id:6, name:"Jack Daniel's Tennessee 1L", category:"destilado", price:179.90, img:"https://picsum.photos/id/1060/600/400" },
+            { id:7, name:"Absolut Original 1L", category:"destilado", price:119.90, img:"https://picsum.photos/id/133/600/400" },
+            { id:8, name:"Red Bull Energy Drink", category:"energetico", price:12.90, img:"https://picsum.photos/id/292/600/400" }
+        ];
+
+        let cart = [];
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = products.map(p => `
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('${p.img}')"></div>
+                    <div style="padding:1.5rem;">
+                        <h3 style="margin-bottom:8px;">${p.name}</h3>
+                        <p class="price">R$ ${p.price.toFixed(2)}</p>
+                        <button onclick="addToCart(${p.id})" class="btn btn-primary add-to-cart" style="width:100%; margin-top:15px;">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existing = cart.find(item => item.id === id);
+            
+            if (existing) existing.quantity++;
+            else cart.push({...product, quantity: 1});
+            
+            updateCartCount();
+            
+            const toast = document.createElement('div');
+            toast.style = `position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:var(--red); color:white; padding:15px 30px; border-radius:50px; z-index:3000;`;
+            toast.textContent = `${product.name} adicionado!`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 1800);
+        }
+
+        function updateCartCount() {
+            document.getElementById('cartCount').textContent = cart.reduce((a, b) => a + b.quantity, 0);
+        }
+
+        function toggleCart() {
+            alert("🛒 Carrinho:\n\n" + cart.map(item => `${item.name} × ${item.quantity}`).join('\n') + 
+                  `\n\nTotal de itens: ${cart.reduce((a,b)=>a+b.quantity,0)}`);
+        }
+
+        // Inicializar
+        window.onload = renderProducts;
+    </script>
+
+    <footer style="padding:80px 20px 40px; text-align:center; color:#aaa;">
+        <p style="font-size:2.2rem; color:var(--gold); margin-bottom:10px;">GODOY BEER 2</p>
+        <p>Depósito de Bebidas Premium • Entrega Rápida</p>
+        <p style="margin-top:20px;">© 2026 Todos os direitos reservados</p>
+    </footer>
+</body>
+</html>
